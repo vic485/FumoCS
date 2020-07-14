@@ -23,7 +23,12 @@ namespace FumoCs
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 fileName += ".exe";
 
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Compiling to {fileName}...");
+            
             Compile(args[0], fileName);
+            Console.WriteLine("Compilation completed!");
+            Console.ResetColor();
         }
 
         private static void Compile(string srcPath, string dstPath)
@@ -53,6 +58,15 @@ namespace FumoCs
                     writer.Write(0);
                 else if (word.Equals("fumofumo"))
                     writer.Write(1);
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"Illegal character detected: {word}");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Compilation failed!");
+                    Console.ResetColor();
+                    Environment.Exit(1);
+                }
             }
         }
     }
