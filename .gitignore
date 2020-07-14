@@ -1,0 +1,7 @@
+﻿.idea/
+bin/
+obj/
+
+# Only needed because I have many sdks installed
+# Just use latest .net core 3.1
+global.json
